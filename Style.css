@@ -91,6 +91,23 @@ nav button:hover, nav button:focus {
     color: white;
     cursor: pointer;
     padding: 0.5rem;
+    background: none;
+    border: none;
+    line-height: 1;
+}
+
+.menu-toggle::before {
+    content: '☰'; /* Hamburger icon */
+    display: block;
+    font-size: 1.5rem;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle.active::before {
+    content: '✕'; /* Close icon when menu is active */
+    font-size: 1.5rem;
+    transform: rotate(90deg);
 }
 
 @media (max-width: 768px) {
@@ -147,6 +164,10 @@ nav button:hover, nav button:focus {
 
     .logo p {
         font-size: clamp(0.625rem, 2vw, 0.75rem);
+    }
+
+    .menu-toggle::before {
+        font-size: 1.25rem;
     }
 }
 
