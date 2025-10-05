@@ -74,6 +74,7 @@ nav button {
     color: white;
     font-size: 16px;
     touch-action: manipulation; /* Improve touch responsiveness */
+    transition: 0.3s;
 }
 
 nav a:hover, nav a:focus {
