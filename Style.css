@@ -75,6 +75,45 @@
       color: #001f5b;
     }
 
+    /*Nav Design for smaller screens*/
+    .menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #001f5b;
+    position: absolute;
+    top: 65px;
+    left: 0;
+    padding: 15px 0;
+    text-align: center;
+    border-top: 2px solid #ff9100;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+  nav li {
+    margin: 15px 0;
+  }
+
+  nav button {
+    width: 80%;
+  }
+}
+
 
     section {
       padding: 40px 20px;
