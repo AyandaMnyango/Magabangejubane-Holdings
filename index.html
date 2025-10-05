@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Magabangejubane Holdings</title>
+
+  <!-- ✅ Add EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Style.css" />
+
+
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <header>
+    <div class="logo">
+      <img src="Logo.jpeg" alt="Logo" />
+      <div>
+        <h1>Magabangejubane Holdings</h1>
+        <p>Your trusted partner in engineering excellence.</p>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about-us">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><button id="getQuoteBtn">Get a Quote</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Popup Box -->
+  <div id="popupOverlay" class="overlay">
+    <div class="popup-content">
+      <span id="closePopup" class="close">&times;</span>
+      <h2>Request a Quote</h2>
+      <form id="quoteForm">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="service">Service Needed:</label>
+        <input type="text" id="service" name="service" required />
+
+        <label for="message">Additional Details:</label>
+        <textarea id="message" name="message" rows="4"></textarea>
+
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="image-container">
+    <video autoplay muted loop="true">
+      <source src="Croped Truck video.mp4" type="video/mp4">
+    </video>
+    <div class="overlay-text">Magabangejubane Holdings</div>
+  </div>
+
+  <!-- About Section-->
+  <section id="about-us" style="padding: 60px 20px; background-color: #f5f5f5;">
+  <div class="about-container">
+    <!-- Text on the left -->
+    <div class="about-text">
+      <h2>About Us</h2>
+      <p>
+        We specialize in providing comprehensive engineering solutions tailored to meet the diverse needs of our clients. Our expertise spans across various industrial services, including fabrication, maintenance, and installation of industrial equipment and structures.  
+      </p>
+      <p>
+        Our mission is to deliver exceptional engineering solutions that enhance efficiency, safety, and sustainability. With a skilled team and a commitment to excellence, we ensure seamless operations and long-term client satisfaction.
+      </p>
+    </div>
+
+    <!-- Image on the right -->
+    <div class="about-image-container">
+      <img src="Truck 1.jpeg" alt="Engineering Work" />
+      <a href="About.html" class="read-more-btn">Read More</a>
+    </div>
+  </div>
+</section>
+    <!-- Services Section-->
+    <section id="services" style="padding: 60px 20px; background-color: #fff;">
+      <div class="services-container">
+        <!-- Image on the left -->
+        <div class="about-image-container">
+          <img src="Truck 3.jpeg" alt="Engineering Service">
+          <a href="Services.html" class="read-more-btn">Read More</a>
+        </div>
+
+        <!-- Text on the right -->
+        <div class="service-text">
+          <h2>Our Services</h2>
+          <p>
+            At Magabangejubane Holdings, we provide top-tier engineering solutions tailored to your needs. From conveyor structure fabrication to industrial equipment maintenance, we ensure efficiency, safety, and precision in every project.
+          </p>
+          <ul>
+            <li>Conveyor Structure Fabrication and Maintenance</li>
+            <li>Industrial Equipment Repairs</li>
+            <li>Steel Pipe Work & Structural Steel Fabrication</li>
+            <li>Plant Maintenance and Rigging Services</li>
+            <li>Supply of General Plant Equipment and Consumables</li>
+          </ul>
+          <a href="mailto:magabangejubaneholdings@gmail.com" class="service-btn">Contact Us</a>
+        </div>
+      </div>
+    </section>
+    <!-- Contact Section-->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Director: Mazibuko, Siyanda Buhle-Bethu</p>
+        <p>Phone: 073 380 0823</p>
+        <p>Email: <a href="mailto:magabangejubaneholdings@gmail.com">magabangejubaneholdings@gmail.com</a></p>
+        <p>Address: Mzingazi Reserve Ward 5 Kwambonambi, Richards Bay, Kwa-Zulu Natal, 3900</p>
+    </section>
+
+  <footer>
+    &copy; 2025 Magabangejubane Holdings. All rights reserved.
+  </footer>
+
+
+  <script>
+    // Initialize EmailJS
+    (function() {
+      emailjs.init("j6pWyy42sd_HC85y6"); 
+    })();
+
+    const getQuoteBtn = document.getElementById('getQuoteBtn');
+    const overlay = document.getElementById('popupOverlay');
+    const closePopup = document.getElementById('closePopup');
+
+    getQuoteBtn.addEventListener('click', () => {
+      overlay.style.display = 'flex';
+    });
+
+    closePopup.addEventListener('click', () => {
+      overlay.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.style.display = 'none';
+      }
+    });
+
+    // ✅ Send Email via EmailJS
+    document.getElementById('quoteForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      emailjs.sendForm('service_vqrk1ea', 'template_i2cwh6n', this)
+        .then(() => {
+          alert('✅ Quote request sent successfully!');
+          overlay.style.display = 'none';
+          this.reset();
+        }, (error) => {
+          alert('❌ Failed to send: ' + JSON.stringify(error));
+        });
+    });
+  </script>
+</body>
+</html>

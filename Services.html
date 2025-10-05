@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Magabangejubane Holdings</title>
+
+    <!-- ✅ Add EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Style.css"/>
+
+
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <header>
+    <div class="logo">
+      <img src="Logo.jpeg" alt="Logo" />
+      <div>
+        <h1>Magabangejubane Holdings</h1>
+        <p>Your trusted partner in engineering excellence.</p>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html#hero">Home</a></li>
+        <li><a href="index.html#about-us">About</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><button id="getQuoteBtn">Get a Quote</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="about-us" style="padding: 60px 20px; background-color: #f5f5f5;">
+    <!-- Text on the left -->
+    <div class="about-text">
+      <h2>Services</h2>
+    <ol class="values-list">
+      <li>
+        <span class="value-title">Conveyor Structure Fabrication and Maintenance</span>
+      </li>
+      <li>
+        <span class="value-title">Fitting of Conveyor Rollers, Pulleys, Scrapers</span>
+      </li>
+      <li>
+        <span class="value-title">Supply and Installation of Chutes, Hoppers</span>
+      </li>
+      <li>
+        <span class="value-title">Supply, Fabricate, or Repair Industrial Bins/Skips</span>
+      </li>
+      <li>
+        <span class="value-title">On-Site Fabrication, Erection, and Installation Maintenance</span>
+      </li>
+      <li>
+        <span class="value-title">Steel Pipe Work - Supply, Fabrication & Installation</span>
+      </li>
+      <li>
+        <span class="value-title">Plant Maintenance</span>
+      </li>
+      <li>
+        <span class="value-title">Rigging Services</span>
+      </li>
+      <li>
+        <span class="value-title">Supply of General Plant Equipment and Consumables</span>
+      </li>
+      <li>
+        <span class="value-title">Structural Steel and Plate Work Fabrication and Erection</span>
+      </li>
+      <li>
+        <span class="value-title">Furnace Steel Structure</span>
+      </li>
+      <li>
+        <span class="value-title">Professional Drafting by Qualified Draftsperson</span>
+      </li>
+      <li>
+        <span class="value-title">Industrial Equipment Repairs</span>
+        <p>(including tipper truck bins, trailers, chassis repairs, front end loader bucket repairs, and new capital projects construction & erection)</p>
+      </li>
+    </ol>
+
+
+      
+      <h2>Mining Construction Material Supply</h2>
+        <ol class="values-list">
+          <li>
+            <span class="value-title">62</span>
+          </li>
+          <li>
+            <span class="value-title">65</span>
+          </li>
+          <li>
+            <span class="value-title">67</span>
+          </li>
+          <li>
+            <span class="value-title">Fill Material</span>
+          </li>
+        </ol>
+
+      <h2>Commodity Handling</h2>
+      <ol class="values-list">
+        <li>
+          <span class="value-title">Rail and road truck off loading</span>
+        </li>
+        <li>
+          <span class="value-title">Loading at the Port of Richards Bay</span>
+        </li>
+        <li>
+          <span class="value-title">Vessel Loading on and off</span>
+        </li>
+        <li>
+          <span class="value-title">Handling of various commodities including:</span>
+          <ul>
+            <p>Chrome</p>
+            <p>Coal</p>
+            <p>Fertilizer</p>
+            <p>Manganese</p>
+          </ul>
+        </li>
+        <li>
+          <span class="value-title">Back of Port Storage and Transport</span>
+        </li>
+        <li>
+          <span class="value-title">Clearing and Forwarding</span>
+        </li>
+      </ol>
+
+
+    </div>
+  </section>
+
+     <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Director: Mazibuko, Siyanda Buhle-Bethu</p>
+        <p>Phone: 073 380 0823</p>
+        <p>Email: <a href="mailto:magabangejubaneholdings@gmail.com">magabangejubaneholdings@gmail.com</a></p>
+        <p>Address: Mzingazi Reserve Ward 5 Kwambonambi, Richards Bay, Kwa-Zulu Natal, 3900</p>
+    </section>
+
+  <footer>
+    &copy; 2025 Magabangejubane Holdings. All rights reserved.
+  </footer>
+
+
+  <script>
+    // Initialize EmailJS
+    (function() {
+      emailjs.init("j6pWyy42sd_HC85y6"); 
+    })();
+
+    const getQuoteBtn = document.getElementById('getQuoteBtn');
+    const overlay = document.getElementById('popupOverlay');
+    const closePopup = document.getElementById('closePopup');
+
+    getQuoteBtn.addEventListener('click', () => {
+      overlay.style.display = 'flex';
+    });
+
+    closePopup.addEventListener('click', () => {
+      overlay.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.style.display = 'none';
+      }
+    });
+
+    // ✅ Send Email via EmailJS
+    document.getElementById('quoteForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      emailjs.sendForm('service_vqrk1ea', 'template_i2cwh6n', this)
+        .then(() => {
+          alert('✅ Quote request sent successfully!');
+          overlay.style.display = 'none';
+          this.reset();
+        }, (error) => {
+          alert('❌ Failed to send: ' + JSON.stringify(error));
+        });
+    });
+ 
+  </script>
+</body>
+</html>

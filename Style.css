@@ -1,0 +1,430 @@
+    html {
+        scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      background-color: #001f5b;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    .logo h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .logo p {
+      margin: 0;
+      font-size: 14px;
+      color: #ffd700;
+    }
+
+    nav ul { 
+      list-style: none; 
+      margin: 0; 
+      padding: 0; 
+      display: flex; 
+      align-items: center; 
+    } 
+    nav li { 
+      margin-left: 20px; 
+    } 
+    nav a { 
+      color: white; 
+      text-decoration: none; 
+      font-weight: bold; 
+    } 
+    nav button { 
+        background-color: #ff9100; 
+        border: none; 
+        padding: 12px 12px; 
+        cursor: pointer; 
+        font-weight: bold; 
+        border-radius: 4px; 
+        color: white; 
+    }
+    nav a:hover {
+      color: #ffd700;
+    }
+
+    nav button:hover {
+      background-color: #ffd700;
+      color: #001f5b;
+    }
+
+
+    section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    section h2 {
+      color: #001f5b;
+      border-bottom: 2px solid #ffd700;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 50px;
+    }
+
+    #contact {
+      background-color: #001f5b;
+      color: white;
+    }
+
+    #contact a {
+      color: #ffd700;
+    }
+
+    footer {
+      background-color: #000000;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    /* Popup Overlay and Box */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(6px);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .popup-content {
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      position: relative;
+      animation: popIn 0.3s ease;
+    }
+
+    .popup-content h2 {
+      margin-top: 0;
+      color: #001f5b;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #001f5b;
+    }
+
+    .popup-content input,
+    .popup-content textarea {
+      width: 95%;
+      padding: 10px;
+      margin: 8px 0 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .submit-btn {
+      background-color: #001f5b;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .submit-btn:hover {
+      background-color: #ffd700;
+      color: #001f5b;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    /* Hero Section */
+        /* Container for the image */
+    .image-container {
+      position: relative; /* allows text to be placed on top */
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+    }
+
+    /* Image itself */
+    .image-container video {
+      width: 100%;
+      object-fit: cover; /* makes sure the image fills the box */
+      display: block;
+      filter: brightness(70%); /* darkens the video for better text visibility */
+      object-position: center;
+    }
+
+    /* Text overlay */
+    .overlay-text {
+      font-family: 'Bebas Neue', sans-serif;
+      position: absolute;
+      top: 50%; /* centers vertically */
+      left: 50%; /* centers horizontally */
+      transform: translate(-50%, -50%); /* perfect center alignment */
+      color: #ffffff;
+      font-size: 50px;
+      font-weight: 600;
+      text-align: center;
+      padding: 12px 20px;
+      border-radius: 8px;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+
+    }
+    .about-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 30px;
+  }
+
+  /* Text section */
+  .about-text {
+    flex: 1;
+    min-width: 280px;
+  }
+
+  .about-text h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: #001f5b;
+    margin-bottom: 20px;
+  }
+
+  .about-text p {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 15px;
+  }
+
+  /* Image section */
+  .about-image-container {
+    position: relative;
+    flex: 1;
+    min-width: 280px;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .about-image-container img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Read More button on top of image */
+  .read-more-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #ff9100;
+    color: white;
+    padding: 10px 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 6px;
+    transition: 0.3s;
+  }
+
+.about-image-container:hover img {
+  filter: blur(2px);
+  transition: filter 0.3s ease;
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+.about-image-container:hover .read-more-btn {
+  background-color: #ffd700;
+  color: #001f5b;
+}
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .about-container {
+      flex-direction: column-reverse; /* image on top for small screens */
+      gap: 20px;
+    }
+
+    .about-image-container {
+      height: 250px;
+    }
+  }
+
+  /* Services Section */
+  .services-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 30px;
+  }
+
+  /* Image section */
+  .service-image-container {
+    flex: 1;
+    min-width: 280px;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .service-image-container img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  /* Optional hover effect on image */
+  .service-image-container:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Text section */
+  .service-text {
+    flex: 1;
+    min-width: 280px;
+  }
+
+  .service-text h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: #001f5b;
+    margin-bottom: 20px;
+  }
+
+  .service-text p {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 15px;
+  }
+
+  .service-text ul {
+    margin: 15px 0;
+    padding-left: 20px;
+    list-style-type: disc;
+    color: #333;
+  }
+
+  .service-text ul li {
+    margin-bottom: 8px;
+  }
+
+  .service-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff9100;
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: 0.3s;
+    margin-top: 15px;
+  }
+
+  .service-btn:hover {
+    background-color: #ffd700;
+    color: #001f5b;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .services-container {
+      flex-direction: column; /* Stack image on top on small screens */
+      gap: 20px;
+    }
+
+    .service-image-container {
+      height: 250px;
+    }
+  }
+
+  /*About Page Styles*/
+    .values-list {
+    list-style: none; /* remove default numbers */
+    counter-reset: value-counter;
+    padding-left: 0;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .values-list li {
+    position: relative;
+    padding-left: 50px;
+    margin-bottom: 25px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .values-list li::before {
+    counter-increment: value-counter;
+    content: counter(value-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: #ff9100;
+  }
+
+  .value-title {
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+    color: #001f5b;
+    margin-bottom: 5px;
+  }

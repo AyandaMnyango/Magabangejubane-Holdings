@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Magabangejubane Holdings</title>
+
+    <!-- ✅ Add EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Style.css"/>
+
+
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <header>
+    <div class="logo">
+      <img src="Logo.jpeg" alt="Logo" />
+      <div>
+        <h1>Magabangejubane Holdings</h1>
+        <p>Your trusted partner in engineering excellence.</p>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html#hero">Home</a></li>
+        <li><a href="index.html#about-us">About</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><button id="getQuoteBtn">Get a Quote</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="about-us" style="padding: 60px 20px; background-color: #f5f5f5;">
+    <!-- Text on the left -->
+    <div class="about-text">
+      <h2>About Us</h2>
+      <p>
+        We specialize in providing comprehensive engineering solutions tailored to meet the diverse needs of our clients. Our expertise spans across various industrial services, including fabrication, maintenance, and installation of industrial equipment and structures.  
+      </p>
+      <p>
+        Our mission is to deliver exceptional engineering solutions that enhance efficiency, safety, and sustainability. With a skilled team and a commitment to excellence, we ensure seamless operations and long-term client satisfaction.
+      </p>
+
+      <h3>Vision statement</h3>
+      <p>
+        Our vision is to be the leading provider of innovative and reliable engineering solutions, recognized for our commitment to excellence, safety, and sustainability. We strive to exceed client expectations through continuous improvement, advanced technology, and a dedicated team of professionals, contributing to the growth and success of the industries we serve.
+      </p>
+
+      <h3>Mission Statement</h3>
+
+      <p>
+        Our mission is to deliver exceptional engineering solutions that enhance the efficiency, safety, and sustainability of our clients’ operations.
+
+        We are committed to precision, innovation, and excellence in every project we undertake. By leveraging advanced technologies, skilled craftsmanship, and a customer-centric approach, we aim to exceed client expectations and foster long-term partnerships.
+      </p>
+
+      
+      <h2>Company Values</h2>
+        <ol class="values-list">
+        <li>
+            <span class="value-title">Precision:</span>
+            We uphold the highest standards of accuracy and detail in all our projects, ensuring superior quality and performance.
+        </li>
+        <li>
+            <span class="value-title">Safety:</span>
+            Safety is at the forefront of our operations. We are committed to maintaining a safe working environment for our employees, clients, and the communities we serve.
+        </li>
+        <li>
+            <span class="value-title">Efficiency:</span>
+            We aim to deliver our services in a timely and cost-effective manner, optimizing resources and minimizing waste to provide the best value for our clients.
+        </li>
+        <li>
+            <span class="value-title">Reliability:</span>
+            Our clients can count on us to be dependable and consistent in our service delivery, fostering long-term partnerships based on trust and mutual respect.
+        </li>
+        </ol>
+    </div>
+  </section>
+
+     <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Director: Mazibuko, Siyanda Buhle-Bethu</p>
+        <p>Phone: 073 380 0823</p>
+        <p>Email: <a href="mailto:magabangejubaneholdings@gmail.com">magabangejubaneholdings@gmail.com</a></p>
+        <p>Address: Mzingazi Reserve Ward 5 Kwambonambi, Richards Bay, Kwa-Zulu Natal, 3900</p>
+    </section>
+
+  <footer>
+    &copy; 2025 Magabangejubane Holdings. All rights reserved.
+  </footer>
+
+
+  <script>
+    // Initialize EmailJS
+    (function() {
+      emailjs.init("j6pWyy42sd_HC85y6"); 
+    })();
+
+    const getQuoteBtn = document.getElementById('getQuoteBtn');
+    const overlay = document.getElementById('popupOverlay');
+    const closePopup = document.getElementById('closePopup');
+
+    getQuoteBtn.addEventListener('click', () => {
+      overlay.style.display = 'flex';
+    });
+
+    closePopup.addEventListener('click', () => {
+      overlay.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.style.display = 'none';
+      }
+    });
+
+    // ✅ Send Email via EmailJS
+    document.getElementById('quoteForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      emailjs.sendForm('service_vqrk1ea', 'template_i2cwh6n', this)
+        .then(() => {
+          alert('✅ Quote request sent successfully!');
+          overlay.style.display = 'none';
+          this.reset();
+        }, (error) => {
+          alert('❌ Failed to send: ' + JSON.stringify(error));
+        });
+    });
+ 
+  </script>
+</body>
+</html>
