@@ -444,6 +444,7 @@ footer {
     font-family: 'Bebas Neue', sans-serif;
     text-decoration: none;
     border-radius: 6px;
+    border: none;
     transition: 0.3s;
     margin-top: 15px;
     font-size: 16px;
@@ -506,4 +507,20 @@ footer {
     font-size: 18px;
     color: #001f5b;
     margin-bottom: 5px;
+}
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  color: #333;
+  margin-bottom: 10px;
+  transition: border 0.3s ease;
+}
+
+select:focus {
+  border-color: #0077b6;
+  outline: none;
 }
