@@ -37,78 +37,71 @@
     </nav>
   </header>
 
+    <!-- Popup Box -->
+  <div id="popupOverlay" class="overlay">
+    <div class="popup-content">
+      <span id="closePopup" class="close">&times;</span>
+      <h2>Request a Quote</h2>
+      <form id="quoteForm">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="skills">Select Service:</label>
+        <select id="skills" name="skills" required>
+          <option value="">-- Choose a service --</option>
+          <option value="Roadworks and Maintenance">Roadworks and Maintenance</option>
+          <option value="Small to Medium Earthworks">Small to Medium Earthworks</option>
+          <option value="Gravel & Material Handling">Gravel & Material Handling</option>
+          <option value="Ancillary Civil Works">Ancillary Civil Works</option>
+        </select>
+
+
+        <label for="message">Additional Details:</label>
+        <textarea id="message" name="message" rows="4"></textarea>
+
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
+  </div>
+
   <section id="about-us" style="padding: 60px 20px; background-color: #f5f5f5;">
     <!-- Text on the left -->
-    <div class="about-text">
+    <div class="service-text">
       <h2>Services</h2>
-     <ul>
-            <li>
-              <strong>Side-Tipper Trucking:</strong>  
-              We provide safe and timely transportation of bulk commodities such as chrome, coal, timber, and other industrial materials, ensuring consistency and compliance with client requirements.
-            </li>
-
-            <li>
-              <strong>Port & Industrial Logistics:</strong>  
-              With deep knowledge of the Richards Bay industrial hub, we service ports, mills, and mines, helping clients streamline supply chains and reduce turnaround times.
-            </li>
-
-            <li>
-              <strong>Heavy Equipment Services:</strong>  
-              We offer versatile machinery support such as TLBs and related equipment for earthworks, loading, and site preparation.
-            </li>
-
-            <li>
-              <strong>Community & Enterprise Development:</strong>  
-              As a 100% black-owned B-BBEE Level 1 company, we are committed to inclusive growth, job creation, and empowering youth through enterprise development.
-            </li>
-          </ul>
-
-
-      
-      <h2>Mining Construction Material Supply</h2>
-        <ol class="values-list">
-          <li>
-            <span class="value-title">62</span>
-          </li>
-          <li>
-            <span class="value-title">65</span>
-          </li>
-          <li>
-            <span class="value-title">67</span>
-          </li>
-          <li>
-            <span class="value-title">Fill Material</span>
-          </li>
-        </ol>
-
-      <h2>Commodity Handling</h2>
-      <ol class="values-list">
-        <li>
-          <span class="value-title">Rail and road truck off loading</span>
-        </li>
-        <li>
-          <span class="value-title">Loading at the Port of Richards Bay</span>
-        </li>
-        <li>
-          <span class="value-title">Vessel Loading on and off</span>
-        </li>
-        <li>
-          <span class="value-title">Handling of various commodities including:</span>
-          <ul>
-            <p>Chrome</p>
-            <p>Coal</p>
-            <p>Fertilizer</p>
-            <p>Manganese</p>
-          </ul>
-        </li>
-        <li>
-          <span class="value-title">Back of Port Storage and Transport</span>
-        </li>
-        <li>
-          <span class="value-title">Clearing and Forwarding</span>
-        </li>
-      </ol>
-
+     <ol>
+    <li><strong>Roadworks and Maintenance</strong>
+        <ul>
+            <li>Re-graveling of Roads – restoring gravel surfaces for rural, municipal, and mining access roads.</li>
+            <li>Pothole Patching & Repairs – cost-effective and fast turnaround on damaged sections.</li>
+            <li>Shoulder Maintenance – reshaping and compacting road shoulders to improve safety.</li>
+            <li>Road Cleaning & Debris Removal – ensuring safer access routes.</li>
+        </ul>
+    </li>
+    <li><strong>Small to Medium Earthworks</strong>
+        <ul>
+            <li>Site Clearing & Leveling – preparation for building or infrastructure projects.</li>
+            <li>Cut & Fill Operations – balancing earth movement for stable platforms.</li>
+            <li>Trenching for Services – small trenches for pipelines, drainage, or cabling.</li>
+        </ul>
+    </li>
+    <li><strong>Gravel & Material Handling</strong>
+        <ul>
+            <li>Gravel Hauling & Spreading – supply and lay suitable road material.</li>
+            <li>Compaction Services – ensuring long-lasting road surfaces.</li>
+            <li>Stockpile Management – handling bulk aggregates for clients.</li>
+        </ul>
+    </li>
+    <li><strong>Ancillary Civil Works</strong>
+        <ul>
+            <li>Kerb & Edge Restraints – improving urban or industrial road structures.</li>
+            <li>Small Concrete Works – including kerbing, headwalls for culverts, and drainage channels.</li>
+            <li>Low-Volume Road Surfacing (Chip & Spray) – cost-effective sealing for rural roads.</li>
+        </ul>
+    </li>
+</ol>
 
     </div>
   </section>
@@ -126,47 +119,62 @@
   </footer>
 
 
-  <script>
-    // Initialize EmailJS
-    (function() {
-      emailjs.init("j6pWyy42sd_HC85y6"); 
-    })();
+    <script>
 
-    const getQuoteBtn = document.getElementById('getQuoteBtn');
-    const overlay = document.getElementById('popupOverlay');
-    const closePopup = document.getElementById('closePopup');
+  // ✅ Initialize EmailJS
+  (function() {
+    emailjs.init("j6pWyy42sd_HC85y6"); 
+  })();
 
-    getQuoteBtn.addEventListener('click', () => {
-      overlay.style.display = 'flex';
-    });
+  const getQuoteBtn = document.getElementById('getQuoteBtn');
+  const overlay = document.getElementById('popupOverlay');
+  const closePopup = document.getElementById('closePopup');
 
-    closePopup.addEventListener('click', () => {
+  // 🟢 Show popup
+  getQuoteBtn.addEventListener('click', () => {
+    overlay.style.display = 'flex';
+  });
+
+  // 🔴 Close popup
+  closePopup.addEventListener('click', () => {
+    overlay.style.display = 'none';
+  });
+
+  // 🔘 Click outside popup closes it
+  window.addEventListener('click', (e) => {
+    if (e.target === overlay) {
       overlay.style.display = 'none';
-    });
+    }
+  });
 
-    window.addEventListener('click', (e) => {
-      if (e.target === overlay) {
+  // ✉️ Send Email via EmailJS (includes dropdown value)
+  document.getElementById('quoteForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const selectedService = document.getElementById('skills').value; // ✅ Correct dropdown ID
+
+    // Optional debug log (remove later)
+    console.log("Selected Service:", selectedService);
+
+    // Send the form to EmailJS
+    emailjs.sendForm('service_vqrk1ea', 'template_i2cwh6n', this)
+      .then(() => {
+        alert('✅ Quote request sent successfully!');
         overlay.style.display = 'none';
-      }
-    });
+        this.reset();
+      }, (error) => {
+        alert('❌ Failed to send: ' + JSON.stringify(error));
+      });
+  });
 
-    // ✅ Send Email via EmailJS
-    document.getElementById('quoteForm').addEventListener('submit', function(e) {
-      e.preventDefault();
+  // ☰ Toggle mobile menu (if exists)
+  const menuToggle = document.getElementById('menu-toggle');
+  if (menuToggle) {
+    menuToggle.addEventListener('click', () => {
+      document.getElementById('nav-links').classList.toggle('active');
+    });
+  }
 
-      emailjs.sendForm('service_vqrk1ea', 'template_i2cwh6n', this)
-        .then(() => {
-          alert('✅ Quote request sent successfully!');
-          overlay.style.display = 'none';
-          this.reset();
-        }, (error) => {
-          alert('❌ Failed to send: ' + JSON.stringify(error));
-        });
-    });
-    document.getElementById('menu-toggle').addEventListener('click', () => {
-    document.getElementById('nav-links').classList.toggle('active');
-    });
- 
-  </script>
+</script>
 </body>
 </html>
