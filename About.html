@@ -37,6 +37,36 @@
     </nav>
   </header>
 
+    <!-- Popup Box -->
+  <div id="popupOverlay" class="overlay">
+    <div class="popup-content">
+      <span id="closePopup" class="close">&times;</span>
+      <h2>Request a Quote</h2>
+      <form id="quoteForm">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="skills">Select Service:</label>
+        <select id="skills" name="skills" required>
+          <option value="">-- Choose a service --</option>
+          <option value="Roadworks and Maintenance">Roadworks and Maintenance</option>
+          <option value="Small to Medium Earthworks">Small to Medium Earthworks</option>
+          <option value="Gravel & Material Handling">Gravel & Material Handling</option>
+          <option value="Ancillary Civil Works">Ancillary Civil Works</option>
+        </select>
+
+
+        <label for="message">Additional Details:</label>
+        <textarea id="message" name="message" rows="4"></textarea>
+
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
+  </div>
+
   <section id="about-us" style="padding: 60px 20px; background-color: #f5f5f5;">
     <!-- Text on the left -->
     <div class="about-text">
@@ -101,47 +131,62 @@
   </footer>
 
 
-  <script>
-    // Initialize EmailJS
-    (function() {
-      emailjs.init("j6pWyy42sd_HC85y6"); 
-    })();
+      <script>
 
-    const getQuoteBtn = document.getElementById('getQuoteBtn');
-    const overlay = document.getElementById('popupOverlay');
-    const closePopup = document.getElementById('closePopup');
+  // ✅ Initialize EmailJS
+  (function() {
+    emailjs.init("j6pWyy42sd_HC85y6"); 
+  })();
 
-    getQuoteBtn.addEventListener('click', () => {
-      overlay.style.display = 'flex';
-    });
+  const getQuoteBtn = document.getElementById('getQuoteBtn');
+  const overlay = document.getElementById('popupOverlay');
+  const closePopup = document.getElementById('closePopup');
 
-    closePopup.addEventListener('click', () => {
+  // 🟢 Show popup
+  getQuoteBtn.addEventListener('click', () => {
+    overlay.style.display = 'flex';
+  });
+
+  // 🔴 Close popup
+  closePopup.addEventListener('click', () => {
+    overlay.style.display = 'none';
+  });
+
+  // 🔘 Click outside popup closes it
+  window.addEventListener('click', (e) => {
+    if (e.target === overlay) {
       overlay.style.display = 'none';
-    });
+    }
+  });
 
-    window.addEventListener('click', (e) => {
-      if (e.target === overlay) {
+  // ✉️ Send Email via EmailJS (includes dropdown value)
+  document.getElementById('quoteForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const selectedService = document.getElementById('skills').value; // ✅ Correct dropdown ID
+
+    // Optional debug log (remove later)
+    console.log("Selected Service:", selectedService);
+
+    // Send the form to EmailJS
+    emailjs.sendForm('service_vqrk1ea', 'template_i2cwh6n', this)
+      .then(() => {
+        alert('✅ Quote request sent successfully!');
         overlay.style.display = 'none';
-      }
-    });
+        this.reset();
+      }, (error) => {
+        alert('❌ Failed to send: ' + JSON.stringify(error));
+      });
+  });
 
-    // ✅ Send Email via EmailJS
-    document.getElementById('quoteForm').addEventListener('submit', function(e) {
-      e.preventDefault();
+  // ☰ Toggle mobile menu (if exists)
+  const menuToggle = document.getElementById('menu-toggle');
+  if (menuToggle) {
+    menuToggle.addEventListener('click', () => {
+      document.getElementById('nav-links').classList.toggle('active');
+    });
+  }
 
-      emailjs.sendForm('service_vqrk1ea', 'template_i2cwh6n', this)
-        .then(() => {
-          alert('✅ Quote request sent successfully!');
-          overlay.style.display = 'none';
-          this.reset();
-        }, (error) => {
-          alert('❌ Failed to send: ' + JSON.stringify(error));
-        });
-    });
-    document.getElementById('menu-toggle').addEventListener('click', () => {
-    document.getElementById('nav-links').classList.toggle('active');
-    });
- 
-  </script>
+</script>
 </body>
 </html>
