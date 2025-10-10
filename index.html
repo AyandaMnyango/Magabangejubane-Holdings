@@ -52,8 +52,15 @@
         <label for="email">Email Address:</label>
         <input type="email" id="email" name="email" required />
 
-        <label for="service">Service Needed:</label>
-        <input type="text" id="service" name="service" required />
+        <label for="skills">Select Service:</label>
+        <select id="skills" name="skills" required>
+          <option value="">-- Choose a service --</option>
+          <option value="Roadworks and Maintenance">Roadworks and Maintenance</option>
+          <option value="Small to Medium Earthworks">Small to Medium Earthworks</option>
+          <option value="Gravel & Material Handling">Gravel & Material Handling</option>
+          <option value="Ancillary Civil Works">Ancillary Civil Works</option>
+        </select>
+
 
         <label for="message">Additional Details:</label>
         <textarea id="message" name="message" rows="4"></textarea>
@@ -109,29 +116,25 @@
           <p>
             At Magabangejubane Holdings, we specialize in logistics and commodity handling, offering reliable, efficient, and cost-effective transport solutions tailored to meet client needs across Richards Bay and beyond.
           </p>
-          <ul>
-            <li>
-              <strong>Side-Tipper Trucking:</strong>  
-              We provide safe and timely transportation of bulk commodities such as chrome, coal, timber, and other industrial materials, ensuring consistency and compliance with client requirements.
-            </li>
+          <ol>
+    <li><strong>Roadworks and Maintenance</strong>
+        <ul>
+            <li>Re-graveling of Roads – restoring gravel surfaces for rural, municipal, and mining access roads.</li>
+            <li>Pothole Patching & Repairs – cost-effective and fast turnaround on damaged sections.</li>
+            <li>Shoulder Maintenance – reshaping and compacting road shoulders to improve safety.</li>
+            <li>Road Cleaning & Debris Removal – ensuring safer access routes.</li>
+        </ul>
+    </li>
+    <li><strong>Small to Medium Earthworks</strong>
+        <ul>
+            <li>Site Clearing & Leveling – preparation for building or infrastructure projects.</li>
+            <li>Cut & Fill Operations – balancing earth movement for stable platforms.</li>
+            <li>Trenching for Services – small trenches for pipelines, drainage, or cabling.</li>
+        </ul>
+    </li>
+</ol>
 
-            <li>
-              <strong>Port & Industrial Logistics:</strong>  
-              With deep knowledge of the Richards Bay industrial hub, we service ports, mills, and mines, helping clients streamline supply chains and reduce turnaround times.
-            </li>
-
-            <li>
-              <strong>Heavy Equipment Services:</strong>  
-              We offer versatile machinery support such as TLBs and related equipment for earthworks, loading, and site preparation.
-            </li>
-
-            <li>
-              <strong>Community & Enterprise Development:</strong>  
-              As a 100% black-owned B-BBEE Level 1 company, we are committed to inclusive growth, job creation, and empowering youth through enterprise development.
-            </li>
-          </ul>
-
-          <a href="mailto:magabangejubaneholdings@gmail.com" class="service-btn">Contact Us</a>
+          <button onclick = "window.location.href='https://wa.me/27733800823?text=Hello%20I%20would%20like%20to%20know%20more%20about%20your%20services'" class="service-btn">Contact Us</button>
         </div>
       </div>
     </section>
@@ -150,45 +153,62 @@
 
 
   <script>
-    // Initialize EmailJS
-    (function() {
-      emailjs.init("j6pWyy42sd_HC85y6"); 
-    })();
 
-    const getQuoteBtn = document.getElementById('getQuoteBtn');
-    const overlay = document.getElementById('popupOverlay');
-    const closePopup = document.getElementById('closePopup');
+  // ✅ Initialize EmailJS
+  (function() {
+    emailjs.init("j6pWyy42sd_HC85y6"); 
+  })();
 
-    getQuoteBtn.addEventListener('click', () => {
-      overlay.style.display = 'flex';
-    });
+  const getQuoteBtn = document.getElementById('getQuoteBtn');
+  const overlay = document.getElementById('popupOverlay');
+  const closePopup = document.getElementById('closePopup');
 
-    closePopup.addEventListener('click', () => {
+  // 🟢 Show popup
+  getQuoteBtn.addEventListener('click', () => {
+    overlay.style.display = 'flex';
+  });
+
+  // 🔴 Close popup
+  closePopup.addEventListener('click', () => {
+    overlay.style.display = 'none';
+  });
+
+  // 🔘 Click outside popup closes it
+  window.addEventListener('click', (e) => {
+    if (e.target === overlay) {
       overlay.style.display = 'none';
-    });
+    }
+  });
 
-    window.addEventListener('click', (e) => {
-      if (e.target === overlay) {
+  // ✉️ Send Email via EmailJS (includes dropdown value)
+  document.getElementById('quoteForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const selectedService = document.getElementById('skills').value; // ✅ Correct dropdown ID
+
+    // Optional debug log (remove later)
+    console.log("Selected Service:", selectedService);
+
+    // Send the form to EmailJS
+    emailjs.sendForm('service_vqrk1ea', 'template_i2cwh6n', this)
+      .then(() => {
+        alert('✅ Quote request sent successfully!');
         overlay.style.display = 'none';
-      }
-    });
+        this.reset();
+      }, (error) => {
+        alert('❌ Failed to send: ' + JSON.stringify(error));
+      });
+  });
 
-    // ✅ Send Email via EmailJS
-    document.getElementById('quoteForm').addEventListener('submit', function(e) {
-      e.preventDefault();
+  // ☰ Toggle mobile menu (if exists)
+  const menuToggle = document.getElementById('menu-toggle');
+  if (menuToggle) {
+    menuToggle.addEventListener('click', () => {
+      document.getElementById('nav-links').classList.toggle('active');
+    });
+  }
 
-      emailjs.sendForm('service_vqrk1ea', 'template_i2cwh6n', this)
-        .then(() => {
-          alert('✅ Quote request sent successfully!');
-          overlay.style.display = 'none';
-          this.reset();
-        }, (error) => {
-          alert('❌ Failed to send: ' + JSON.stringify(error));
-        });
-    });
-    document.getElementById('menu-toggle').addEventListener('click', () => {
-    document.getElementById('nav-links').classList.toggle('active');
-    });
-  </script>
+</script>
+
 </body>
 </html>
